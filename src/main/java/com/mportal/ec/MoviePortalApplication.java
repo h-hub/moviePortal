@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExplorecaliApplication {
+public class MoviePortalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExplorecaliApplication.class, args);
+		SpringApplication.run(MoviePortalApplication.class, args);
 	}
 }
