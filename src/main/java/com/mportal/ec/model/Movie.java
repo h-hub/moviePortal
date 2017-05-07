@@ -1,12 +1,13 @@
 package com.mportal.ec.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Movie {
+public class Movie implements Serializable{
 	
 	@Id
 	@GeneratedValue
@@ -30,8 +31,23 @@ public class Movie {
 	@Column
 	private String wallpaper;
 	
+	@Column
+	private Integer author;
+	
 	@OneToMany
 	private Collection<Review> reviews;
+	
+	
+
+	public Movie(String name, Date year, String director, String genre, String description, String wallpaper, Integer author) {
+		this.name = name;
+		this.year = year;
+		this.director = director;
+		this.genre = genre;
+		this.description = description;
+		this.wallpaper = wallpaper;
+		this.author = author;
+	}
 
 	public Integer getId() {
 		return id;

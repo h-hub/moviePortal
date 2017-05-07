@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: mportal
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: bjayamanna
+Built-By: harsha
 Implementation-Vendor-Id: com.mportal.ec
 Build-Jdk: 1.8.0_121
 Implementation-URL: http://projects.spring.io/spring-boot/mportal/
