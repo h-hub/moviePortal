@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Movie implements Serializable{
 	
 	@Id
+	@Column
 	@GeneratedValue
 	private Integer id;
 	

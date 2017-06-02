@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+@Entity
 public class Review implements Serializable{
 	
+	@Id
 	@Column
+	@GeneratedValue
 	private Integer userId;
 	
 	@Column
@@ -17,9 +20,6 @@ public class Review implements Serializable{
 	
 	@Column
 	private String vote;
-	
-	@ManyToOne
-	private Movie movie;
 	
 	public Review(Integer userId,Integer movieId,String review,String vote){
 		this.userId = userId;

@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.mportal.ec.ExplorecaliApplication</config>
+		<config>java:com.mportal.ec.MoviePortalApplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

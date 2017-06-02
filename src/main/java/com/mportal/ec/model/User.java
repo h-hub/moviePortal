@@ -11,6 +11,7 @@ import javax.persistence.Id;
 public class User implements Serializable{
 	
 	@Id
+	@Column
 	@GeneratedValue
 	private Integer id;
 	
