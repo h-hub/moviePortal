@@ -1,8 +1,10 @@
 package com.mportal.ec.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-public class Review {
+public class Review implements Serializable{
 	
 	@Column
 	private Integer userId;
@@ -18,6 +20,13 @@ public class Review {
 	
 	@ManyToOne
 	private Movie movie;
+	
+	public Review(Integer userId,Integer movieId,String review,String vote){
+		this.userId = userId;
+		this.movieId = movieId;
+		this.review = review;
+		this.vote = vote;
+	}
 
 	public Integer getUserId() {
 		return userId;

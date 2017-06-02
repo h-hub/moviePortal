@@ -34,6 +34,4 @@ public class MovieService {
 	public Iterable<Movie> lookUp(){
 		return movieRepository.findAll();
 	}
-	
-	
 }
