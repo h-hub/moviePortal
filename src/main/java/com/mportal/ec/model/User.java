@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -12,7 +13,7 @@ public class User implements Serializable{
 	
 	@Id
 	@Column
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column
@@ -26,19 +27,22 @@ public class User implements Serializable{
 	
 	@Column
 	private String password;
-
-	public Integer getId() {
-		return id;
+	
+	protected User(){
+		
 	}
 	
-	public User(Integer id,String firstName,String lastName,String email,String password){
-		this.id = id;
+	public User(String firstName,String lastName,String email,String password){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email= email;
 		this.password= password;
 	}
-
+	
+	public Integer getId() {
+		return id;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
