@@ -17,5 +17,9 @@ public class UserService {
 	
 	public User createUser(String firstName,String lastName,String email,String password){
 		return userRepository.save(new User(firstName, lastName, email, password));
-	}  
+	}
+	
+//	public User grtUser(String email){
+//		return userRepository.save(new User(firstName, lastName, email, password));
+//	}
 }
