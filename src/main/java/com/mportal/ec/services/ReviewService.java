@@ -1,4 +1,4 @@
-package com.mportal.services;
+package com.mportal.ec.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.mportal.services;
+package com.mportal.ec.services;
 
 import java.sql.Date;
 
