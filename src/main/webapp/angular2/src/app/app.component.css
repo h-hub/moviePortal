@@ -1,0 +1,9 @@
+
+
+.jumbotron{
+	background-image: url("../assets/images/WonderWoman.jpg");
+	height:300px;
+	background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center top;              /* optional, center the image */
+}
