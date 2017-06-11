@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie/movie.component';
 import { CreateMovieComponent } from './movie/create-movie/create-movie.component';
 import { AboutComponent } from './about/about.component';
@@ -15,6 +16,7 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     MovieComponent,
     CreateMovieComponent,
     AboutComponent,
@@ -29,6 +31,10 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
     MdNativeDateModule,
     FormsModule,
     RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent
+      },
       {
         path: 'about',
         component: AboutComponent
