@@ -8,12 +8,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MovieComponent } from './movie/movie/movie.component';
 import { CreateMovieComponent } from './movie/create-movie/create-movie.component';
+import { AboutComponent } from './about/about.component';
+import { UserComponent } from './user/user/user.component';
+import { CreateUserComponent } from './user/create-user/create-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieComponent,
-    CreateMovieComponent
+    CreateMovieComponent,
+    AboutComponent,
+    UserComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +27,28 @@ import { CreateMovieComponent } from './movie/create-movie/create-movie.componen
     ReactiveFormsModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'create_movie',
+        component: CreateMovieComponent
+      },
+      {
+        path: 'profile',
+        component: UserComponent
+      },
+      {
+        path: 'create_user',
+        component: CreateUserComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
