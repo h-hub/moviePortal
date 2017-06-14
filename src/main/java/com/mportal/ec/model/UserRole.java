@@ -25,7 +25,7 @@ public class UserRole {
         private static final long serialVersionUID = 1322120000551624359L;
         
         @Column(name = "APP_USER_ID")
-        protected Long userId;
+        protected Integer userId;
         
         @Enumerated(EnumType.STRING)
         @Column(name = "ROLE")
@@ -33,7 +33,7 @@ public class UserRole {
         
         public Id() { }
 
-        public Id(Long userId, Role role) {
+        public Id(Integer userId, Role role) {
             this.userId = userId;
             this.role = role;
         }

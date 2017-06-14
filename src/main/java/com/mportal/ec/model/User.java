@@ -29,7 +29,7 @@ public class User implements Serializable{
 	private String username;
 	
 	@OneToMany
-    @JoinColumn(name="APP_USER_ID", referencedColumnName="ID")
+    @JoinColumn(name="APP_USER_ID", referencedColumnName="id")
     private List<UserRole> roles;
 	
 	@Column
