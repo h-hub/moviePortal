@@ -18,7 +18,7 @@ import javax.persistence.Table;
  *         Aug 18, 2016
  */
 @Entity
-@Table(name = "USER_ROLE")
+@Table(name = "user_role")
 public class UserRole {
     @Embeddable
     public static class Id implements Serializable {
