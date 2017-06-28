@@ -21,12 +21,6 @@ public class User implements Serializable{
 	private Integer id;
 	
 	@Column
-	private String firstName;
-	
-	@Column
-	private String lastName;
-	
-	@Column
 	private String username;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -43,11 +37,8 @@ public class User implements Serializable{
 		
 	}
 	
-	public User(String firstName, String lastName, String username, List<UserRole> roles, String email, String password){
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public User(String username, String email, String password){
 		this.username = username;
-		this.roles = roles;
 		this.email= email;
 		this.password= password;
 	}
@@ -60,18 +51,6 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -82,10 +61,6 @@ public class User implements Serializable{
 
 	public List<UserRole> getRoles() {
 		return roles;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getEmail() {
