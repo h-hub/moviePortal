@@ -1,13 +1,20 @@
 package com.mportal.ec.model;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.ScriptAssert;
 
-@ScriptAssert(lang = "javascript", script = "_this.password===_this.passwordRepeat")
-public class UserDto {
+//@ScriptAssert(lang = "javascript", script = "_this.password===_this.passwordRepeat")
+public class UserDto implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Length(min=6)
 	@NotNull
 	private String username;
@@ -76,6 +83,13 @@ public class UserDto {
 	public void setPasswordRepeat(String passwordRepeat) {
 		this.passwordRepeat = passwordRepeat;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDto [username=" + username + ", email=" + email + ", emailRepeat=" + emailRepeat + ", password="
+				+ password + ", passwordRepeat=" + passwordRepeat + "]";
+	}
+	
 	
 	
 }

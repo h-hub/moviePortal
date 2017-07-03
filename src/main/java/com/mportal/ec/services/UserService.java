@@ -16,15 +16,15 @@ public class UserService {
 	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
-	public UserService(UserRepository userRepository){
+	public UserService(UserRepository userRepository,BCryptPasswordEncoder encoder){
 		this.userRepository = userRepository;
+		this.encoder = encoder;
 	}
 	
-	public User createUser(String username, String email,String password){
+	public void createUser(String username, String email,String password){
 		
-		User user = new User(username, email, encoder.encode(password));
-		
-		return userRepository.save(user);
+		userRepository.save(new User(username, email, encoder.encode(password)));
+		//return null;
 	}
 	
 	public Optional<User> getByUsername(String username){
