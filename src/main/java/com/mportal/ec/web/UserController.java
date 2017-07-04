@@ -28,10 +28,8 @@ public class UserController {
 	@RequestMapping(method= RequestMethod.POST, path="/create" )
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public void createUser(@RequestBody @Validated UserDto userDto ){
+	public User createUser(@RequestBody @Validated UserDto userDto ){
 		
-		userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
-		
-//		return null;
+		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
 	}
 }

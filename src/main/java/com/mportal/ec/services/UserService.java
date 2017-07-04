@@ -21,10 +21,15 @@ public class UserService {
 		this.encoder = encoder;
 	}
 	
-	public void createUser(String username, String email,String password){
+	public User createUser(String username, String email,String password){
 		
-		userRepository.save(new User(username, email, encoder.encode(password)));
-		//return null;
+		Optional<User> user = userRepository.findByusername(username);
+		
+		if(user.isPresent()){
+			throw new RuntimeException("Username exists:"+user);
+		}
+		
+		return userRepository.save(new User(username, email, encoder.encode(password)));
 	}
 	
 	public Optional<User> getByUsername(String username){

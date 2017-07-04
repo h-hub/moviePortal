@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.ScriptAssert;
 
-//@ScriptAssert(lang = "javascript", script = "_this.password===_this.passwordRepeat")
+@ScriptAssert(lang = "javascript", script = "_this.password===_this.passwordRepeat && _this.email===_this.emailRepeat")
 public class UserDto implements Serializable {
 	
 	/**
@@ -89,7 +89,4 @@ public class UserDto implements Serializable {
 		return "UserDto [username=" + username + ", email=" + email + ", emailRepeat=" + emailRepeat + ", password="
 				+ password + ", passwordRepeat=" + passwordRepeat + "]";
 	}
-	
-	
-	
 }
