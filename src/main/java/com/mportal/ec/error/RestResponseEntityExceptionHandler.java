@@ -1,8 +1,11 @@
 package com.mportal.ec.error;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.EntityExistsException;
 
+import com.mportal.ec.exception.MyEntityFoundException;
 import com.mportal.ec.exception.MyResourceNotFoundException;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -67,6 +70,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = { EntityNotFoundException.class, MyResourceNotFoundException.class })
     protected ResponseEntity<Object> handleNotFound(final RuntimeException ex, final WebRequest request) {
         final String bodyOfResponse = "This should be application specific";
+        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+    
+    @ExceptionHandler(value = { EntityExistsException.class, MyEntityFoundException.class })
+    protected ResponseEntity<Object> handleEntityFound(final RuntimeException ex, final WebRequest request) {
+        final String bodyOfResponse = "Entity already found in the database";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
