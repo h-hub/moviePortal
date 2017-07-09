@@ -3,6 +3,7 @@ package com.mportal.ec.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,7 @@ public class User implements Serializable{
 	@Column
 	private String username;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name="APP_USER_ID", referencedColumnName="id")
     private List<UserRole> roles;
 	
@@ -66,6 +67,10 @@ public class User implements Serializable{
 
 	public List<UserRole> getRoles() {
 		return roles;
+	}
+	
+	public void setRoles(List<UserRole> roles) {
+		this.roles = roles;
 	}
 
 	public String getEmail() {

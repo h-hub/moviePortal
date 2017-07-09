@@ -1,14 +1,17 @@
 package com.mportal.ec.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.stereotype.Service;
 
 import com.mportal.ec.exception.MyEntityFoundException;
+import com.mportal.ec.model.Role;
 import com.mportal.ec.model.User;
+import com.mportal.ec.model.UserRole;
 import com.mportal.ec.repo.UserRepository;
 
 @Service
@@ -31,7 +34,16 @@ public class UserService {
 			throw new MyEntityFoundException();
 		}
 		
-		return userRepository.save(new User(username, email, encoder.encode(password)));
+		User tmpUser = new User(username, email, encoder.encode(password));
+		
+		UserRole userRole= new UserRole(tmpUser,Role.ADMIN);
+		
+		List<UserRole> roles = new ArrayList<UserRole>();
+		roles.add(userRole);
+		
+		tmpUser.setRoles(roles);
+		
+		return userRepository.save(tmpUser);
 	}
 	
 	public Optional<User> getByUsername(String username){
