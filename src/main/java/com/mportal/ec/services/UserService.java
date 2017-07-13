@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.mportal.ec.exception.ExceptionFactory;
+import com.mportal.ec.exception.ExceptionType;
 import com.mportal.ec.exception.MyEntityFoundException;
 import com.mportal.ec.model.Role;
 import com.mportal.ec.model.User;
@@ -31,7 +34,7 @@ public class UserService {
 		Optional<User> user = userRepository.findByusername(username);
 		
 		if(user.isPresent()){
-			throw new MyEntityFoundException();
+			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS);
 		}
 		
 		User tmpUser = new User(username, email, encoder.encode(password));
@@ -44,6 +47,8 @@ public class UserService {
 		tmpUser.setRoles(roles);
 		
 		return userRepository.save(tmpUser);
+		
+		
 	}
 	
 	public Optional<User> getByUsername(String username){
