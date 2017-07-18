@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mportal.ec.exception.ExceptionFactory;
 import com.mportal.ec.exception.ExceptionType;
-import com.mportal.ec.exception.MyEntityFoundException;
 import com.mportal.ec.model.Role;
 import com.mportal.ec.model.User;
 import com.mportal.ec.model.UserRole;
@@ -34,7 +32,7 @@ public class UserService {
 		Optional<User> user = userRepository.findByusername(username);
 		
 		if(user.isPresent()){
-			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS);
+			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity found in database.");
 		}
 		
 		User tmpUser = new User(username, email, encoder.encode(password));
