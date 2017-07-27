@@ -7,16 +7,19 @@ import javax.sql.DataSource;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @SpringBootApplication
 @EnableConfigurationProperties
+@EnableAutoConfiguration(exclude = {RepositoryRestMvcConfiguration.class})
 public class MoviePortalApplication {
 	
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

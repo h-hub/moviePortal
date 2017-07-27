@@ -16,7 +16,7 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
       //expected Exceptions
       @ExceptionHandler(ApplicationSpecificException.class)
       protected ResponseEntity<Object> handleApplicationSpecificException(final RuntimeException ex, final WebRequest request) {
-          final String bodyOfResponse = "This should be application specific";
+          final String bodyOfResponse = "application specific";
           return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
       }
 
@@ -24,7 +24,7 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
       //unexpected Exceptions
       @ExceptionHandler(Exception.class)
       	protected ResponseEntity<Object> handleException(final RuntimeException ex, final WebRequest request) {
-    	  final String bodyOfResponse = "This should be application specific";
+    	  final String bodyOfResponse = "application specific";
     	  return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
       }
 }

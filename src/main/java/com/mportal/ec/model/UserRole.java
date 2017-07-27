@@ -1,6 +1,9 @@
 package com.mportal.ec.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -46,25 +49,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "user_role")
-public class UserRole{
+public class UserRole implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id",
 		unique = true, nullable = false)
 	private Integer userRoleId;
-	
-	@JsonIgnore    
+	    
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "APP_USER_ID", nullable = false)
 	private User user;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "ROLE", insertable=false, updatable=false)
+	@Column(name = "ROLE")
 	private Role role;
 
 	public UserRole() {
@@ -99,4 +104,10 @@ public class UserRole{
 		this.role = role;
 	}
 
+	@Override
+	public String toString() {
+		return "UserRole [userRoleId=" + userRoleId + ", user=" + user + ", role=" + role + "]";
+	}
+	
+	
 }
