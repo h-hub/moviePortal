@@ -28,18 +28,42 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 		</dependency>
 		<dependency>
 	      <groupId>io.jsonwebtoken</groupId>
@@ -66,6 +90,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -78,11 +108,6 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>
@@ -92,6 +117,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<exclusions>
+		    	<exclusion>
+		      		<groupId>org.springframework.boot</groupId>
+		      		<artifactId>spring-boot-starter-logging</artifactId>
+		    	</exclusion>
+		  	</exclusions>
 		</dependency>
 		
 		<!-- Logging -->
@@ -120,19 +151,6 @@
 		   <artifactId>log4j-jcl</artifactId>
 		   <version>2.5</version>
 		</dependency>
-		
-		<!-- Exclude Logback -->
-		<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-security</artifactId>
-		   <exclusions>
-		      <exclusion>
-		         <groupId>ch.qos.logback</groupId>
-		         <artifactId>logback-classic</artifactId>
-		      </exclusion>
-		   </exclusions>
-		</dependency>
-
 	</dependencies>
 
 	<build>
