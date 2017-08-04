@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -19,6 +20,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 @SpringBootApplication
 @EnableConfigurationProperties
+@EnableAspectJAutoProxy
 @EnableAutoConfiguration(exclude = {RepositoryRestMvcConfiguration.class})
 public class MoviePortalApplication {
 	
