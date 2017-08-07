@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class UserService {
 	
 	private UserRepository userRepository;
 	private BCryptPasswordEncoder encoder;
+	private Logger LOG;
 	
 	@Autowired
 	public UserService(UserRepository userRepository,BCryptPasswordEncoder encoder){
@@ -28,6 +31,8 @@ public class UserService {
 	}
 	
 	public User createUser(String username, String email,String password){
+		
+		
 		
 		Optional<User> user = userRepository.findByusername(username);
 		

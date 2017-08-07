@@ -27,11 +27,11 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="org.springframework.web" level="debug" additivity="false">
+        <Logger name="com.mportal.ec.aspects" level="debug" additivity="false">
             <AppenderRef ref="SpringBoot-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
         </Logger>
-        <Logger name="guru.springframework.blog.controllers" level="debug" additivity="false">
+        <Logger name="com.mportal.ec" level="debug" additivity="false">
             <AppenderRef ref="App-File-Appender"/>
             <AppenderRef ref="Console-Appender"/>
          </Logger>
