@@ -1,8 +1,10 @@
 package com.mportal.ec.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,26 +15,26 @@ import org.springframework.stereotype.Service;
 import com.mportal.ec.exception.ExceptionFactory;
 import com.mportal.ec.exception.ExceptionType;
 import com.mportal.ec.model.Role;
+import com.mportal.ec.model.Roles;
 import com.mportal.ec.model.User;
-import com.mportal.ec.model.UserRole;
+import com.mportal.ec.repo.RoleRepository;
 import com.mportal.ec.repo.UserRepository;
 
 @Service
 public class UserService {
 	
 	private UserRepository userRepository;
+	private RoleRepository roleRepository;
 	private BCryptPasswordEncoder encoder;
-	private Logger LOG;
 	
 	@Autowired
-	public UserService(UserRepository userRepository,BCryptPasswordEncoder encoder){
+	public UserService(UserRepository userRepository,BCryptPasswordEncoder encoder,RoleRepository roleRepository){
 		this.userRepository = userRepository;
 		this.encoder = encoder;
+		this.roleRepository = roleRepository;
 	}
 	
-	public User createUser(String username, String email,String password){
-		
-		
+	public User createUser(String username, String email,String password,Integer roleId){
 		
 		Optional<User> user = userRepository.findByusername(username);
 		
@@ -40,16 +42,16 @@ public class UserService {
 			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity found in database.");
 		}
 		
-		User tmpUser = new User(username, email, encoder.encode(password));
+		User newUser = new User(username, email, encoder.encode(password));
 		
-		UserRole userRole= new UserRole(tmpUser,Role.ADMIN);
+		Role userRole= roleRepository.findByid(roleId);
 		
-		List<UserRole> roles = new ArrayList<UserRole>();
+		Set<Role> roles = new HashSet<Role>();
 		roles.add(userRole);
 		
-		tmpUser.setRoles(roles);
+		newUser.setRoles(roles);
 		
-		return userRepository.save(tmpUser);
+		return userRepository.save(newUser);
 		
 		
 	}

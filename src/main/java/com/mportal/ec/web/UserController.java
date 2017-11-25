@@ -1,6 +1,10 @@
 package com.mportal.ec.web;
 
+import javax.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,16 +24,19 @@ public class UserController {
 	
 	private UserService userService;
 	
+	private ModelMapper modelmapper;
+	
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService,ModelMapper modelmapper) {
 		this.userService = userService;
+		this.modelmapper = modelmapper;
 	}
 
 	@RequestMapping(method= RequestMethod.POST, path="/create" )
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public User createUser(@RequestBody @Validated UserDto userDto ){
-		
-		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
+	public User createUser( @RequestBody @Validated UserDto userDto){
+		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleId());
 	}
+	
 }

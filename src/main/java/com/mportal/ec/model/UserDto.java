@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.ScriptAssert;
 
@@ -20,6 +21,7 @@ public class UserDto implements Serializable {
 	private String username;
 	
 	@NotNull
+	@Email
 	private String email;
 	
 	@NotNull
@@ -33,15 +35,19 @@ public class UserDto implements Serializable {
 	@NotNull
 	private String passwordRepeat;
 	
+	@NotNull
+	private Integer roleId;
+	
 	public UserDto() {
     }
 
-	public UserDto(String username, String email, String emailRepeat, String password, String passwordRepeat) {
+	public UserDto(String username, String email, String emailRepeat, String password, String passwordRepeat,Integer roleId) {
 		this.username = username;
 		this.email = email;
 		this.emailRepeat = emailRepeat;
 		this.password = password;
 		this.passwordRepeat = passwordRepeat;
+		this.roleId = roleId;
 	}
 
 	public String getUsername() {
@@ -83,7 +89,15 @@ public class UserDto implements Serializable {
 	public void setPasswordRepeat(String passwordRepeat) {
 		this.passwordRepeat = passwordRepeat;
 	}
-
+	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserDto [username=" + username + ", email=" + email + ", emailRepeat=" + emailRepeat + ", password="

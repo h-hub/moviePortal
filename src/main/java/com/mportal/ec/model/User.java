@@ -1,7 +1,9 @@
 package com.mportal.ec.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -29,9 +33,13 @@ public class User implements Serializable{
 	@Column
 	private String username;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name="APP_USER_ID", referencedColumnName="id")
-    private List<UserRole> roles;
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "user_role", 
+        joinColumns = { @JoinColumn(name = "user_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
+    Set<Role> roles = new HashSet<>();
 	
 	@Column
 	private String email;
@@ -65,11 +73,11 @@ public class User implements Serializable{
 		this.username = username;
 	}
 
-	public List<UserRole> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 	
-	public void setRoles(List<UserRole> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
