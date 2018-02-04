@@ -59,4 +59,23 @@ public class UserService {
 	public Optional<User> getByUsername(String username){
 		return userRepository.findByusername(username);
 	}
+
+	public User getUser(String username) {
+		
+		Optional<User> user = userRepository.findByusername(username);
+		
+		if(!user.isPresent()){
+			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity not found in database.");
+		}
+		return user.get();
+	}
+
+	public boolean deletetUser(String username) {
+		Optional<User> user = userRepository.findByusername(username);
+		
+		if(!user.isPresent()){
+			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity not found in database.");
+		}
+		return userRepository.deleteByusername(username);
+	}
 }
