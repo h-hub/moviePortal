@@ -31,7 +31,7 @@ public class UserService {
 		this.roleRepository = roleRepository;
 	}
 	
-	public User createUser(String username, String email,String password,Integer[] roleIds){
+	public User create(String username, String email,String password,Integer[] roleIds) throws Exception {
 		
 		Optional<User> user = userRepository.findByusername(username);
 		
@@ -41,7 +41,7 @@ public class UserService {
 		
 		User newUser = new User(username, email, encoder.encode(password));
 		
-		List<Role> userRole= roleRepository.findAll(Arrays.asList(roleIds));
+		List<Role> userRole= roleRepository.findAll();
 		
 		Set<Role> roles = new HashSet<Role>(userRole);
 		
@@ -73,5 +73,24 @@ public class UserService {
 			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity not found in database.");
 		}
 		return userRepository.deleteByusername(username);
+	}
+
+	public User update(Integer userId, String username, String email, String password, Integer[] roleIds) {
+		
+		Optional<User> user = userRepository.findByusername(username);
+		
+		if(!user.isPresent()){
+			throw ExceptionFactory.create(ExceptionType.ENTITY_EXISTS, "Entity not found in database.");
+		}
+
+		User newUser = new User(username, email, encoder.encode(password));
+		
+		List<Role> userRole= roleRepository.findAll(Arrays.asList(roleIds));
+		
+		Set<Role> roles = new HashSet<Role>(userRole);
+		
+		newUser.setRoles(roles);
+		
+		return userRepository.save(newUser);
 	}
 }

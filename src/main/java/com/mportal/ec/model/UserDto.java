@@ -2,6 +2,10 @@ package com.mportal.ec.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,6 +20,8 @@ public class UserDto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Integer userId;
 
 	@Length(min=6)
 	@NotNull
@@ -42,13 +48,22 @@ public class UserDto implements Serializable {
 	public UserDto() {
     }
 
-	public UserDto(String username, String email, String emailRepeat, String password, String passwordRepeat,Integer[] roleIds) {
+	public UserDto(Integer userId,String username, String email, String emailRepeat, String password, String passwordRepeat,Integer[] roleIds) {
+		this.userId = userId;
 		this.username = username;
 		this.email = email;
 		this.emailRepeat = emailRepeat;
 		this.password = password;
 		this.passwordRepeat = passwordRepeat;
 		this.roleIds = roleIds;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {

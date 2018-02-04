@@ -39,7 +39,13 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public User createUser( @RequestBody @Validated UserDto userDto){
-		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleIds());
+		try {
+			return userService.create(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleIds());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@RequestMapping(method= RequestMethod.GET, path="/get/{username}" )
@@ -49,5 +55,11 @@ public class UserController {
 		return userService.getByUsername(username).get();
 	}
 	
+	@RequestMapping(method= RequestMethod.PUT, path="/update" )
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public User updateUser( @RequestBody @Validated UserDto userDto ){
+		return userService.update(userDto.getUserId(), userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleIds());
+	}
 	
 }
