@@ -26,14 +26,14 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column
+	@Column(name = "user_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer userId;
 	
 	@Column
 	private String username;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinTable(
         name = "user_role", 
         joinColumns = { @JoinColumn(name = "user_id") }, 
@@ -58,11 +58,11 @@ public class User implements Serializable{
 	}
 	
 	public Integer getId() {
-		return id;
+		return userId;
 	}
 	
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {

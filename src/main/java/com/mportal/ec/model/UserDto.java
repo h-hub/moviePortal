@@ -3,6 +3,7 @@ package com.mportal.ec.model;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -36,18 +37,18 @@ public class UserDto implements Serializable {
 	private String passwordRepeat;
 	
 	@NotNull
-	private Integer roleId;
+	private Integer[] roleIds;
 	
 	public UserDto() {
     }
 
-	public UserDto(String username, String email, String emailRepeat, String password, String passwordRepeat,Integer roleId) {
+	public UserDto(String username, String email, String emailRepeat, String password, String passwordRepeat,Integer[] roleIds) {
 		this.username = username;
 		this.email = email;
 		this.emailRepeat = emailRepeat;
 		this.password = password;
 		this.passwordRepeat = passwordRepeat;
-		this.roleId = roleId;
+		this.roleIds = roleIds;
 	}
 
 	public String getUsername() {
@@ -90,12 +91,12 @@ public class UserDto implements Serializable {
 		this.passwordRepeat = passwordRepeat;
 	}
 	
-	public Integer getRoleId() {
-		return roleId;
+	public Integer[] getRoleIds() {
+		return roleIds;
 	}
 	
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setRoleIds(Integer[] roleIds) {
+		this.roleIds = roleIds;
 	}
 	
 	@Override

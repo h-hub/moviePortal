@@ -9,6 +9,6 @@ import com.mportal.ec.model.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 	
-	Role findByid(Integer id);
+	//Role findByid(Integer id);
 	
 }

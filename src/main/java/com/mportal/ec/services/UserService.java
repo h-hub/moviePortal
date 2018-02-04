@@ -1,13 +1,11 @@
 package com.mportal.ec.services;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.mportal.ec.exception.ExceptionFactory;
 import com.mportal.ec.exception.ExceptionType;
 import com.mportal.ec.model.Role;
-import com.mportal.ec.model.Roles;
 import com.mportal.ec.model.User;
 import com.mportal.ec.repo.RoleRepository;
 import com.mportal.ec.repo.UserRepository;
@@ -34,7 +31,7 @@ public class UserService {
 		this.roleRepository = roleRepository;
 	}
 	
-	public User createUser(String username, String email,String password,Integer roleId){
+	public User createUser(String username, String email,String password,Integer[] roleIds){
 		
 		Optional<User> user = userRepository.findByusername(username);
 		
@@ -44,10 +41,9 @@ public class UserService {
 		
 		User newUser = new User(username, email, encoder.encode(password));
 		
-		Role userRole= roleRepository.findByid(roleId);
+		List<Role> userRole= roleRepository.findAll(Arrays.asList(roleIds));
 		
-		Set<Role> roles = new HashSet<Role>();
-		roles.add(userRole);
+		Set<Role> roles = new HashSet<Role>(userRole);
 		
 		newUser.setRoles(roles);
 		

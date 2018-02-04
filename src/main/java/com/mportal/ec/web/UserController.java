@@ -1,5 +1,7 @@
 package com.mportal.ec.web;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +39,15 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public User createUser( @RequestBody @Validated UserDto userDto){
-		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleId());
+		return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(),userDto.getRoleIds());
 	}
+	
+	@RequestMapping(method= RequestMethod.GET, path="/get/{username}" )
+	@ResponseStatus(HttpStatus.FOUND)
+	@ResponseBody
+	public User getUserByUsername( @PathVariable("username") String username){
+		return userService.getByUsername(username).get();
+	}
+	
 	
 }
